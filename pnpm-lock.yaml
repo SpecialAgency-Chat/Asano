@@ -40,6 +40,9 @@ devDependencies:
   eslint:
     specifier: ^8.46.0
     version: 8.46.0
+  pnpm:
+    specifier: ^8.6.11
+    version: 8.6.11
   prettier:
     specifier: ^3.0.0
     version: 3.0.0
@@ -1807,6 +1810,12 @@ packages:
   /picomatch@2.3.1:
     resolution: {integrity: sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==}
     engines: {node: '>=8.6'}
+    dev: true
+
+  /pnpm@8.6.11:
+    resolution: {integrity: sha512-jqknppuj45tDzJsLcLqkAxytBHZXIx9JTYkGNq0/7pSRggpio9wRxTDj4NA2ilOHPlJ5BVjB5Ij5dx65woMi5A==}
+    engines: {node: '>=16.14'}
+    hasBin: true
     dev: true
 
   /prebuild-install@7.1.1:
