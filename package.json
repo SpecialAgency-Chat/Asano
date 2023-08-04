@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "@types/browser-util-inspect": "^0.2.1",
+    "@types/node": "^20.4.7",
     "@typescript-eslint/eslint-plugin": "^6.2.1",
     "@typescript-eslint/parser": "^6.2.1",
     "dotenv": "^16.3.1",
