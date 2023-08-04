@@ -11,12 +11,13 @@ import {
 import { isChatInputApplicationCommandInteraction } from "discord-api-types/utils/v10";
 import { Command } from "./interfaces";
 
-import { Ping, Sudo, Exit } from "@/commands";
+import { Ping, Sudo, Exit, Key } from "@/commands";
 
 const commands = new Map<string, Command>();
 commands.set("ping", new Ping());
 commands.set("sudo", new Sudo());
 commands.set("exit", new Exit());
+commands.set("key", new Key());
 
 const app = new Hono();
 const logger = getLogger("Interactions");
