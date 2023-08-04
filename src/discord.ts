@@ -66,6 +66,10 @@ export class DiscordManager {
             "Content-Type": "application/json",
           },
     });
-    return await r.json();
+    try {
+      return await r.json();
+    } catch (e) {
+      return e;
+    }
   }
 }
