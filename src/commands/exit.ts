@@ -62,7 +62,9 @@ export class Exit extends Command {
         data: {
           content: `\`\`\`ansi\n[2;36m@root[0m ➜[1;2m[1;34m/guilds/sac[0m[0m $ logout\n${
             !data ? "[2;33mWarning: You're not in sudo in db.[0m\n" : ""
-          }[2;36m@${interaction.member.user.username}[0m ➜[1;2m[1;34m/guilds/sac[0m[0m $\n\`\`\``,
+          }[2;36m@${
+            interaction.member.user.username
+          }[0m ➜[1;2m[1;34m/guilds/sac[0m[0m $\n\`\`\``,
           flags: MessageFlags.Ephemeral,
         },
       };
