@@ -26,7 +26,7 @@ export class Sudo extends Command {
       return {
         type: InteractionResponseType.ChannelMessageWithSource,
         data: {
-          content: `${interaction.member.user.username} is not in the sudoers file.  This incident will be reported.`,
+          content: `${interaction.member.user.username} does not have the sudoers role.  This incident will be reported.`,
         },
       };
     }
