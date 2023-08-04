@@ -10,7 +10,7 @@
     "build": "node build.js",
     "clean": "rimraf dist",
     "dev": "wrangler dev",
-    "release": "wrangler deployn",
+    "release": "wrangler deploy",
     "register": "node dist/register.js"
   },
   "keywords": [],
