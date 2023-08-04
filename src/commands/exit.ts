@@ -42,7 +42,7 @@ export class Exit extends Command {
     const client = await getClient(env);
     const sudoingDb = client.db("bot").collection<Sudoing>("sudoing");
     const data = await sudoingDb.findOne({
-      discord_id: interaction.member.user.id
+      discord_id: interaction.member.user.id,
     });
     try {
       await discord.delete(
@@ -60,7 +60,9 @@ export class Exit extends Command {
       return {
         type: InteractionResponseType.ChannelMessageWithSource,
         data: {
-          content: `\`\`\`\n@root ➜/guilds/sac $ logout\n${!data ? "Warning: You're not in sudo in db.\n":""}@${interaction.member.user.username} ➜/guilds/sac $\n\`\`\``,
+          content: `\`\`\`\n@root ➜/guilds/sac $ logout\n${
+            !data ? "Warning: You're not in sudo in db.\n" : ""
+          }@${interaction.member.user.username} ➜/guilds/sac $\n\`\`\``,
           flags: MessageFlags.Ephemeral,
         },
       };
