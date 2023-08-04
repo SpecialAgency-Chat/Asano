@@ -13,7 +13,7 @@ commands.set("ping", new Ping());
 const app = new Hono();
 const logger = getLogger("Interactions");
 
-app.post("/", async (c) => {
+app.all("/", async (c) => {
   logger.debug("Received request");
   logger.trace(c);
   const { isValid, interaction } = await verifyDiscordRequest(c);
