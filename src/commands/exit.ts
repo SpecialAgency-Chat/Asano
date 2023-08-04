@@ -42,7 +42,7 @@ export class Exit extends Command {
     const client = await getClient(env);
     const sudoingDb = client.db("bot").collection<Sudoing>("sudoing");
     const data = await sudoingDb.findOne({
-      executed_at: new Date(),
+      discord_id: interaction.member.user.id
     });
     try {
       await discord.delete(
