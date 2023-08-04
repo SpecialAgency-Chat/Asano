@@ -1,0 +1,7 @@
+node_modules
+pnpm-lock.yaml
+.dev.vars
+.dev.vars.example
+dist
+node_modules
+.vscode
