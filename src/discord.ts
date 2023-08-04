@@ -49,7 +49,11 @@ export class DiscordManager {
             "Content-Type": "application/json",
           },
     });
-    return await r.json();
+    try {
+      return await r.json();
+    } catch (e) {
+      return e;
+    }
   }
   async delete(url: string, body: unknown, auditReason?: string) {
     const r = await fetch(`${this.#root}${url}`, {
