@@ -1,5 +1,4 @@
-import "realm-web/types/realm/services";
-type Document = Realm.Services.MongoDB.Document;
+import { Document } from "./types";
 
 export interface Sudoing extends Document {
   discord_id: string;

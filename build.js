@@ -13,7 +13,6 @@ const ctx = await context({
   platform: "browser",
   target: "esnext",
   logLevel: "info",
-  external: ["realm-web/types/realm/services"]
 });
 await ctx.rebuild();
 const ctx2 = await context({
