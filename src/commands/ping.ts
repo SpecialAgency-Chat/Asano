@@ -1,13 +1,14 @@
-import { Awaitable, Command } from "@/interfaces";
-import { APIInteractionResponseChannelMessageWithSource, InteractionResponseType } from "discord-api-types/v10";
+import { Command } from "@/interfaces";
+import { APIInteractionResponseChannelMessageWithSource, InteractionResponseType, MessageFlags } from "discord-api-types/v10";
 
 export class Ping extends Command {
   name = "ping";
-  execute(): Awaitable<APIInteractionResponseChannelMessageWithSource> {
+  execute(): APIInteractionResponseChannelMessageWithSource {
     return {
       type: InteractionResponseType.ChannelMessageWithSource,
       data: {
-        content: "Pong!"
+        content: "Pong!",
+        flags: MessageFlags.Ephemeral
       }
     };
   }

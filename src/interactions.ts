@@ -3,12 +3,14 @@ import { verifyDiscordRequest } from "@/verifyDiscordRequest";
 import { getLogger } from "@/logger";
 import { APIInteractionResponseChannelMessageWithSource, APIInteractionResponsePong, InteractionResponseType, InteractionType, MessageFlags } from "discord-api-types/v10";
 import { isChatInputApplicationCommandInteraction } from "discord-api-types/utils/v10";
+import { Command } from "./interfaces";
 
 import { Ping } from "@/commands";
-import { Command } from "./interfaces";
+import { Sudo } from "./commands/sudo";
 
 const commands = new Map<string, Command>();
 commands.set("ping", new Ping());
+commands.set("sudo", new Sudo());
 
 const app = new Hono();
 const logger = getLogger("Interactions");

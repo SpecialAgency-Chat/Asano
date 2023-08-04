@@ -8,14 +8,17 @@ const commandData: RESTPostAPIApplicationCommandsJSONBody[] = [
   {
     name: "sudo",
     description: "Enter sudo mode",
+    dm_permission: false
   },
   {
     name: "exit",
-    description: "Exit sudo mode"
+    description: "Exit sudo mode",
+    dm_permission: false
   },
   {
     name: "key",
     description: "Get invite key",
+    dm_permission: false,
     options: [
       {
         type: ApplicationCommandOptionType.Integer,
