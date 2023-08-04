@@ -10,5 +10,5 @@ app.route("/interactions", interactionsRouter);
 
 export default {
   fetch: app.fetch,
-  scheduled: cron
+  scheduled: cron,
 };
