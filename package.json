@@ -11,7 +11,9 @@
     "clean": "rimraf dist",
     "dev": "wrangler dev",
     "release": "wrangler deploy",
-    "register": "node dist/register.js"
+    "register": "node dist/register.js",
+    "lint": "eslint . & prettier --check .",
+    "lintfix": "eslint --fix . && prettier --write ."
   },
   "keywords": [],
   "author": "",

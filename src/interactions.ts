@@ -1,7 +1,13 @@
 import { Hono } from "hono";
 import { verifyDiscordRequest } from "@/verifyDiscordRequest";
 import { getLogger } from "@/logger";
-import { APIInteractionResponseChannelMessageWithSource, APIInteractionResponsePong, InteractionResponseType, InteractionType, MessageFlags } from "discord-api-types/v10";
+import {
+  APIInteractionResponseChannelMessageWithSource,
+  APIInteractionResponsePong,
+  InteractionResponseType,
+  InteractionType,
+  MessageFlags,
+} from "discord-api-types/v10";
 import { isChatInputApplicationCommandInteraction } from "discord-api-types/utils/v10";
 import { Command } from "./interfaces";
 
@@ -27,7 +33,7 @@ app.all("/", async (c) => {
 
   if (interaction.type === InteractionType.Ping) {
     return c.json<APIInteractionResponsePong>({
-      type: InteractionResponseType.Pong
+      type: InteractionResponseType.Pong,
     });
   }
 
@@ -42,8 +48,8 @@ app.all("/", async (c) => {
           type: InteractionResponseType.ChannelMessageWithSource,
           data: {
             content: "Command not found",
-            flags: MessageFlags.Ephemeral
-          }
+            flags: MessageFlags.Ephemeral,
+          },
         });
       }
       logger.info("Executing command");

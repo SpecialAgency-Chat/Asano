@@ -1,5 +1,9 @@
 import { Command } from "@/interfaces";
-import { APIInteractionResponseChannelMessageWithSource, InteractionResponseType, MessageFlags } from "discord-api-types/v10";
+import {
+  APIInteractionResponseChannelMessageWithSource,
+  InteractionResponseType,
+  MessageFlags,
+} from "discord-api-types/v10";
 
 export class Ping extends Command {
   name = "ping";
@@ -8,8 +12,8 @@ export class Ping extends Command {
       type: InteractionResponseType.ChannelMessageWithSource,
       data: {
         content: "Pong!",
-        flags: MessageFlags.Ephemeral
-      }
+        flags: MessageFlags.Ephemeral,
+      },
     };
   }
 }
