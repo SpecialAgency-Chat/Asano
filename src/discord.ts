@@ -51,14 +51,20 @@ export class DiscordManager {
     });
     return await r.json();
   }
-  async delete(url: string, body: unknown) {
+  async delete(url: string, body: unknown, auditReason?: string) {
     const r = await fetch(`${this.#root}${url}`, {
       method: "DELETE",
       body: JSON.stringify(body),
-      headers: {
-        Authorization: `Bot ${this.#token}`,
-        "Content-Type": "application/json",
-      },
+      headers: auditReason
+        ? {
+            Authorization: `Bot ${this.#token}`,
+            "Content-Type": "application/json",
+            "X-Audit-Log-Reason": auditReason,
+          }
+        : {
+            Authorization: `Bot ${this.#token}`,
+            "Content-Type": "application/json",
+          },
     });
     return await r.json();
   }
