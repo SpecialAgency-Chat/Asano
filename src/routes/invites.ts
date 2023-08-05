@@ -97,6 +97,19 @@ app.post("/callback", async (c) => {
     return c.json({ error: "Error adding user to guild" });
   }
   await invitesDB.deleteOne({ code: inviteCode });
+  await fetch(`https://discord.com/api/v10${Routes.channelMessages(config.joinLog)}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bot ${c.env.DISCORD_TOKEN as string}`
+    },
+    body: JSON.stringify({
+      embeds: [{
+        title: "New user joined",
+        description: `@${user.username} joined the server using the invite code **${inviteCode}**`,
+      }]
+    })
+  });
   return c.json({ success: true });
 });
 
