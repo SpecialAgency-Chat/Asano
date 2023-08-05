@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import interactionsRouter from "./interactions";
+import interactionsRouter from "@/routes/interactions";
 import cron from "@/cron";
 
 const app = new Hono();

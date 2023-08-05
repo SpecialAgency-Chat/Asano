@@ -9,7 +9,7 @@ import {
   MessageFlags,
 } from "discord-api-types/v10";
 import { isChatInputApplicationCommandInteraction } from "discord-api-types/utils/v10";
-import { Command } from "./interfaces";
+import { Command } from "@/interfaces";
 
 import { Ping, Sudo, Exit, Key } from "@/commands";
 
