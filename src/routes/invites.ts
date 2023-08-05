@@ -1,8 +1,12 @@
 import config from "@/config";
 import { getClient } from "@/database";
 import { Invite } from "@/interfaces";
+import { getLogger } from "@/logger";
+import { Routes } from "discord-api-types/v10";
 import { Hono } from "hono";
 const app = new Hono();
+
+const logger = getLogger("Invites");
 
 app.get("/", async (c) => {
   const code = c.req.query("code");
@@ -46,6 +50,7 @@ app.post("/callback", async (c) => {
     await invitesDB.deleteOne({ code: inviteCode });
     return c.json({ error: "Code expired" });
   }
+  logger.info(`Code ${inviteCode} used by ${code}`);
   const tokenResponse = await fetch("https://discord.com/api/oauth2/token", {
     method: "POST",
     headers: {
@@ -59,6 +64,37 @@ app.post("/callback", async (c) => {
       redirect_uri: config.inviteCallback,
     })
   });
-})
+  const { access_token, scope } = await tokenResponse.json();
+  logger.info(`Access token: ${access_token}`);
+  logger.info(`Scope: ${scope}`);
+  if (!access_token) {
+    return c.json({ error: "Invalid code" });
+  }
+  if (!scope.includes("identify") || !scope.includes("guilds.join") || !scope.includes("role_connections.write")) {
+    return c.json({ error: "Scope not valid" });
+  }
+  const user = await (await fetch("https://discord.com/api/v10/users/@me", {
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${access_token}`
+    }
+  })).json();
+  logger.info(`User: ${JSON.stringify(user)}`);
+  const addResponse = await fetch(`https://discord.com/api/v10${Routes.guildMember(config.guildId, user.id)}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bot ${c.env.DISCORD_TOKEN as string}`
+    },
+    body: JSON.stringify({
+      access_token,
+    })
+  });
+  if (!addResponse.ok) {
+    return c.json({ error: "Error adding user to guild" });
+  }
+  await invitesDB.deleteOne({ code: inviteCode });
+  return c.json({ success: true });
+});
 
 export default app;
