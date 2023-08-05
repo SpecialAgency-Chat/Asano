@@ -30,7 +30,7 @@ app.get("/", async (c) => {
 });
 
 app.post("/callback", async (c) => {
-  const { code, inviteCode } = await c.req.json();
+  const { code, state: inviteCode } = await c.req.json();
   if (!code || !inviteCode) {
     return c.json({ error: "No code provided" });
   }
