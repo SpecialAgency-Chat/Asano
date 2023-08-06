@@ -75,6 +75,7 @@ app.get("/", async (c) => {
       },
     );
   }
+  logger.info("User saved");
   const roleResponse = await fetch(
     `https://discord.com/api/v10${Routes.userApplicationRoleConnection(
       process.env.DISCORD_CLIENT_ID as string,
