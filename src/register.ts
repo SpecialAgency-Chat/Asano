@@ -1,6 +1,9 @@
 import dotenv from "dotenv";
 import Commands from "./commandData";
-import { APIApplicationRoleConnectionMetadata, Routes } from "discord-api-types/v10";
+import {
+  APIApplicationRoleConnectionMetadata,
+  Routes,
+} from "discord-api-types/v10";
 
 dotenv.config({ path: ".dev.vars" });
 
@@ -14,7 +17,9 @@ if (!applicationId) {
   throw new Error("The DISCORD_CLIENT_ID environment variable is required.");
 }
 
-const url = `https://discord.com/api/v10${Routes.applicationCommands(applicationId)}`;
+const url = `https://discord.com/api/v10${Routes.applicationCommands(
+  applicationId,
+)}`;
 
 const response = await fetch(url, {
   headers: {
@@ -44,7 +49,9 @@ if (response.ok) {
   process.exit(1);
 }
 
-const url2 = `https://discord.com/api/v10${Routes.applicationRoleConnectionMetadata(applicationId)}`;
+const url2 = `https://discord.com/api/v10${Routes.applicationRoleConnectionMetadata(
+  applicationId,
+)}`;
 
 const metadata: APIApplicationRoleConnectionMetadata[] = [];
 

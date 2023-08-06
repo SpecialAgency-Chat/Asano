@@ -77,22 +77,24 @@ app.post("/", async (c) => {
     );
   }
   const roleResponse = await fetch(
-    `https://discord.com/api/v10${Routes.userApplicationRoleConnection(process.env.DISCORD_CLIENT_ID as string)}`,
+    `https://discord.com/api/v10${Routes.userApplicationRoleConnection(
+      process.env.DISCORD_CLIENT_ID as string,
+    )}`,
     {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${access_token}`,
+        Authorization: `Bearer ${access_token}`,
       },
       body: JSON.stringify({
         access_token,
-        metadata: {}
-      })
-    }
+        metadata: {},
+      }),
+    },
   );
   const roleData = await roleResponse.json();
   logger.info(`Role response: ${JSON.stringify(roleData)}`);
-  return c.text("Success. You may now close this window.")
+  return c.text("Success. You may now close this window.");
 });
 
 export default app;
