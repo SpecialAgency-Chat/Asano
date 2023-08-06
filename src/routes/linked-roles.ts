@@ -79,7 +79,7 @@ app.get("/", async (c) => {
   try {
     await fetch(
       `https://discord.com/api/v10${Routes.userApplicationRoleConnection(
-        process.env.DISCORD_CLIENT_ID as string,
+        c.env.DISCORD_CLIENT_ID as string,
       )}`,
       {
         method: "PUT",
