@@ -9,8 +9,7 @@ const app = new Hono();
 const logger = getLogger("LinkedRoles");
 
 app.get("/", async (c) => {
-  const rawData = await c.req.json();
-  const { code } = rawData;
+  const code = c.req.query("code");
   logger.info(`Code: ${code}`);
   if (!code) {
     return c.json({ error: "No code provided" });
