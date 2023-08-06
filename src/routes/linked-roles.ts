@@ -88,7 +88,9 @@ app.get("/", async (c) => {
       },
       body: JSON.stringify({
         access_token,
-        metadata: {},
+        metadata: {
+          verified: true
+        },
       }),
     },
   );
