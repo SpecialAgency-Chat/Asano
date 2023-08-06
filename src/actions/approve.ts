@@ -100,6 +100,7 @@ export class Approve extends Action {
             color: 0x00ff00,
           },
         ],
+        components: [],
       },
     };
   }
