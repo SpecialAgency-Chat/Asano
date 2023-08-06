@@ -8,7 +8,7 @@ const app = new Hono();
 
 const logger = getLogger("JoinRequest");
 
-app.post("/request", async (c) => {
+app.post("/", async (c) => {
   const rawData = await c.req.json();
   const { code, token } = rawData;
   logger.info(`Code: ${code}`);
