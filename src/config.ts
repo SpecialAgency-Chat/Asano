@@ -4,6 +4,7 @@ const config = {
   guildId: "815165539122151485",
   inviteBaseUrl: "https://sachat.cloud/invites", // last / don't required
   inviteCallback: "https://sachat.cloud/invites/callback",
+  joinrequestCallback: "https://sachat.cloud/request",
   joinLog: "1137258809195245598" // channel id
 } as const;
 
