@@ -8,7 +8,7 @@ const app = new Hono();
 
 const logger = getLogger("LinkedRoles");
 
-app.post("/", async (c) => {
+app.get("/", async (c) => {
   const rawData = await c.req.json();
   const { code } = rawData;
   logger.info(`Code: ${code}`);
