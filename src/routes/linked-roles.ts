@@ -27,7 +27,7 @@ app.get("/", async (c) => {
       client_secret: c.env.DISCORD_CLIENT_SECRET as string,
       grant_type: "authorization_code",
       code,
-      redirect_uri: config.joinrequestCallback,
+      redirect_uri: config.linkedRolesCallback,
     }),
   });
   const { access_token, scope, refresh_token } = await tokenResponse.json();
