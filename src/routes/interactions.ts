@@ -82,8 +82,9 @@ app.all("/", async (c) => {
     }
     logger.info("Executing action");
     if (!c.env) throw new Error("Missing env");
-    await action.execute(interaction, c.env);
+    const response = await action.execute(interaction, c.env);
     logger.info("Action executed");
+    return c.json(response);
   }
 });
 
