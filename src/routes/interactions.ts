@@ -12,7 +12,7 @@ import { isChatInputApplicationCommandInteraction } from "discord-api-types/util
 import { Action, Command } from "@/interfaces";
 
 import { Ping, Sudo, Exit, Key } from "@/commands";
-import { Approve } from "@/actions";
+import { Approve, Decline } from "@/actions";
 
 const commands = new Map<string, Command>();
 commands.set("ping", new Ping());
@@ -22,6 +22,7 @@ commands.set("key", new Key());
 
 const actions = new Map<string, Action>();
 actions.set("approve", new Approve());
+actions.set("decline", new Decline());
 
 const app = new Hono();
 const logger = getLogger("Interactions");
