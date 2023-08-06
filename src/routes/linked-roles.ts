@@ -76,7 +76,7 @@ app.get("/", async (c) => {
     );
   }
   logger.info("User saved");
-  const roleResponse = await fetch(
+  await fetch(
     `https://discord.com/api/v10${Routes.userApplicationRoleConnection(
       process.env.DISCORD_CLIENT_ID as string,
     )}`,
@@ -87,15 +87,13 @@ app.get("/", async (c) => {
         Authorization: `Bearer ${access_token}`,
       },
       body: JSON.stringify({
-        access_token,
+        platform_name: "SAC Manager v2",
         metadata: {
           verified: true
         },
       }),
     },
   );
-  const roleData = await roleResponse.text();
-  logger.info(`Role response: ${JSON.stringify(roleData)}`);
   return c.text("Success. You may now close this window.");
 });
 
