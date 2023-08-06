@@ -89,11 +89,12 @@ app.get("/", async (c) => {
       body: JSON.stringify({
         platform_name: "SAC Manager v2",
         metadata: {
-          verified: true
+          verified: true,
         },
       }),
     },
   );
+  logger.info("Role connection created");
   return c.text("Success. You may now close this window.");
 });
 
