@@ -9,15 +9,19 @@ import {
   MessageFlags,
 } from "discord-api-types/v10";
 import { isChatInputApplicationCommandInteraction } from "discord-api-types/utils/v10";
-import { Command } from "@/interfaces";
+import { Action, Command } from "@/interfaces";
 
 import { Ping, Sudo, Exit, Key } from "@/commands";
+import { Approve } from "@/actions";
 
 const commands = new Map<string, Command>();
 commands.set("ping", new Ping());
 commands.set("sudo", new Sudo());
 commands.set("exit", new Exit());
 commands.set("key", new Key());
+
+const actions = new Map<string, Action>();
+actions.set("approve", new Approve())
 
 const app = new Hono();
 const logger = getLogger("Interactions");
@@ -59,6 +63,27 @@ app.all("/", async (c) => {
       logger.info("Command executed");
       return c.json<APIInteractionResponseChannelMessageWithSource>(response);
     }
+  } else if (interaction.type === InteractionType.MessageComponent) {
+    logger.info("Received action");
+    const actionName = interaction.data.custom_id;
+    let action = actions.get(actionName);
+    if (!action) {
+      action = actions.get(actionName.split("__")[0]!);
+    }
+    if (!action) {
+      logger.warn("Action not found");
+      return c.json<APIInteractionResponseChannelMessageWithSource>({
+        type: InteractionResponseType.ChannelMessageWithSource,
+        data: {
+          content: "Action not found",
+          flags: MessageFlags.Ephemeral,
+        },
+      });
+    }
+    logger.info("Executing action");
+    if (!c.env) throw new Error("Missing env");
+    await action.execute(interaction, c.env);
+    logger.info("Action executed");
   }
 });
 
