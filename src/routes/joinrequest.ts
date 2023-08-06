@@ -2,7 +2,7 @@ import config from "@/config";
 import { getClient } from "@/database";
 import { JoinRequest } from "@/interfaces";
 import { getLogger } from "@/logger";
-import { Routes } from "discord-api-types/v10";
+import { ButtonStyle, ComponentType, Routes } from "discord-api-types/v10";
 import { Hono } from "hono";
 const app = new Hono();
 
@@ -105,6 +105,23 @@ app.post("/", async (c) => {
             footer: { text: "Only sudoers can Approve/Decline request." },
           },
         ],
+        components: [{
+          type: ComponentType.ActionRow,
+          components: [
+            {
+              type: ComponentType.Button,
+              style: ButtonStyle.Success,
+              label: "Approve",
+              custom_id: `approve__${user.id}`,
+            },
+            {
+              type: ComponentType.Button,
+              style: ButtonStyle.Danger,
+              label: "Decline",
+              custom_id: `decline__${user.id}`,
+            }
+          ]
+        }]
       }),
     },
   );
