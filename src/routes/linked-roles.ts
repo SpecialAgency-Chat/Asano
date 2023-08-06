@@ -91,7 +91,7 @@ app.get("/", async (c) => {
       }),
     },
   );
-  const roleData = await roleResponse.json();
+  const roleData = await roleResponse.text();
   logger.info(`Role response: ${JSON.stringify(roleData)}`);
   return c.text("Success. You may now close this window.");
 });
