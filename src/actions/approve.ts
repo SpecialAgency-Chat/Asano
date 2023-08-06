@@ -90,6 +90,7 @@ export class Approve extends Action {
         },
       };
     }
+    await joinrequestDB.deleteOne({ discord_id: userId });
     return {
       type: InteractionResponseType.UpdateMessage,
       data: {
