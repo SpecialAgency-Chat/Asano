@@ -5,7 +5,7 @@ const config = {
   inviteBaseUrl: "https://sachat.cloud/invites", // last / don't required
   inviteCallback: "https://sachat.cloud/invites/callback",
   joinrequestCallback: "https://sachat.cloud/request",
-  linkedRolesCallback: "https://sachat.cloud/linked-roles",
+  linkedRolesCallback: "https://api.sachat.cloud/linked-roles",
   joinLog: "1137258809195245598", // channel id
 } as const;
 
