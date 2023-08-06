@@ -21,7 +21,7 @@ commands.set("exit", new Exit());
 commands.set("key", new Key());
 
 const actions = new Map<string, Action>();
-actions.set("approve", new Approve())
+actions.set("approve", new Approve());
 
 const app = new Hono();
 const logger = getLogger("Interactions");

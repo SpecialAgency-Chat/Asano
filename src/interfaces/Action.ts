@@ -10,5 +10,8 @@ export abstract class Action {
   public abstract execute(
     interaction: APIMessageComponentInteraction,
     env: Bindings,
-  ): Awaitable<APIInteractionResponseChannelMessageWithSource | APIInteractionResponseUpdateMessage>;
+  ): Awaitable<
+    | APIInteractionResponseChannelMessageWithSource
+    | APIInteractionResponseUpdateMessage
+  >;
 }
