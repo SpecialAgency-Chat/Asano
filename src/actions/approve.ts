@@ -74,7 +74,7 @@ export class Approve extends Action {
         headers: {
           "Content-Type": "application/json",
           "X-Audit-Log-Reason": `Approved by sudoers @${interaction.member.user.username}`,
-          "Authorization": `Bot ${env.DISCORD_TOKEN}`
+          Authorization: `Bot ${env.DISCORD_TOKEN}`,
         },
         body: JSON.stringify({
           access_token: joinrequest.access_token,
