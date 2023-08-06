@@ -10,7 +10,7 @@ const app = new Hono();
 app.use(
   "/*",
   cors({
-    origin: "http://sachat.cloud",
+    origin: "https://sachat.cloud",
     allowMethods: ["POST", "GET", "OPTIONS", "HEAD"],
     exposeHeaders: ["Content-Length"],
     maxAge: 600,
