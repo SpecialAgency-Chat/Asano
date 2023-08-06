@@ -76,26 +76,31 @@ app.get("/", async (c) => {
     );
   }
   logger.info("User saved");
-  await fetch(
-    `https://discord.com/api/v10${Routes.userApplicationRoleConnection(
-      process.env.DISCORD_CLIENT_ID as string,
-    )}`,
-    {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${access_token}`,
-      },
-      body: JSON.stringify({
-        platform_name: "SAC Manager v2",
-        metadata: {
-          verified: true,
+  try {
+    await fetch(
+      `https://discord.com/api/v10${Routes.userApplicationRoleConnection(
+        process.env.DISCORD_CLIENT_ID as string,
+      )}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${access_token}`,
         },
-      }),
-    },
-  );
-  logger.info("Role connection created");
-  return c.text("Success. You may now close this window.");
+        body: JSON.stringify({
+          platform_name: "SAC Manager v2",
+          metadata: {
+            verified: true,
+          },
+        }),
+      },
+    );
+    logger.info("Role connection created");
+    return c.text("Success. You may now close this window.");
+  } catch (e) {
+    logger.error(e);
+    return c.text("Error creating role connection");
+  }
 });
 
 export default app;
