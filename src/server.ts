@@ -6,7 +6,7 @@ import joinrequestRouter from "@/routes/joinrequest";
 import linkedRolesRouter from "@/routes/linked-roles";
 import { ExportedHandler } from "@cloudflare/workers-types";
 
-import cron from "@/cron";
+import removeSudo from "@/crons/remove-sudo";
 
 const app = new Hono();
 
@@ -33,7 +33,7 @@ const handler: ExportedHandler<Record<string, string>> = {
   fetch: app.fetch,
   async scheduled(event, env) {
     if (event.cron === "*/1 * * * *") {
-      await cron(event, env);
+      await removeSudo(event, env);
     }
   }
 };

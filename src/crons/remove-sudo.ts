@@ -1,11 +1,11 @@
 import { Routes } from "discord-api-types/v10";
-import { getClient } from "./database";
-import { DiscordManager } from "./discord";
-import { Sudoing } from "./interfaces";
-import config from "./config";
-import { getLogger } from "./logger";
+import { getClient } from "../database";
+import { DiscordManager } from "../discord";
+import { Sudoing } from "../interfaces";
+import config from "../config";
+import { getLogger } from "../logger";
 
-const logger = getLogger("Cron");
+const logger = getLogger("RemoveSudo");
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default async function cron(_: unknown, env: Record<string, string>) {
