@@ -58,7 +58,7 @@ export class Sudo extends Command {
       return {
         type: InteractionResponseType.ChannelMessageWithSource,
         data: {
-          content: `We trust you have received the usual lecture from the local Server\nAdministrator. It usually boils down to these three things:\n\n    #1) Respect the privacy of others.\n    #2) Think before you do.\n    #3) With great power comes great responsibility.`,
+          content: `\`\`\`ansi\n[2;36m@${interaction.member.user.username}[0m ➜[1;2m[1;34m/guilds/sac[0m[0m $ sudo -s\nWe trust you have received the usual lecture from the local Server\nAdministrator. It usually boils down to these three things:\n\n    #1) Respect the privacy of others.\n    #2) Think before you do.\n    #3) With great power comes great responsibility.\n[2;36mroot[0m ➜[1;2m[1;34m/guilds/sac[0m[0m $`,
           flags: MessageFlags.Ephemeral,
         },
       };
