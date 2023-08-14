@@ -42,6 +42,7 @@ export async function refreshTokens(_: unknown, env: Record<string, string>) {
       if (error === "invalid_grant") {
         await usersDb.deleteOne({ discord_id: user.discord_id });
       }
+      return;
     }
     await usersDb.updateOne({ discord_id: user.discord_id }, {
       $set: { access_token, refresh_token, updated_at: new Date() }
