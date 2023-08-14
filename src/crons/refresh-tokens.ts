@@ -36,7 +36,13 @@ export async function refreshTokens(_: unknown, env: Record<string, string>) {
         refresh_token: user.refresh_token,
       }),
     });
-    const { access_token, refresh_token } = await tokenResponse.json();
+    const { access_token, refresh_token, error } = await tokenResponse.json();
+    if (error) {
+      logger.debug(`Error: ${error}`);
+      if (error === "invalid_grant") {
+        await usersDb.deleteOne({ discord_id: user.discord_id });
+      }
+    }
     await usersDb.updateOne({ discord_id: user.discord_id }, {
       $set: { access_token, refresh_token, updated_at: new Date() }
     });
