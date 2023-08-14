@@ -8,7 +8,7 @@ import { getLogger } from "../logger";
 const logger = getLogger("RemoveSudo");
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export default async function cron(_: unknown, env: Record<string, string>) {
+export async function removeSudo(_: unknown, env: Record<string, string>) {
   const client = await getClient(env);
   const discord = new DiscordManager(env.DISCORD_TOKEN as string);
   const sudoingDb = client.db("bot").collection<Sudoing>("sudoing");
